@@ -14,6 +14,32 @@ app = Flask(__name__)
 CORS(app)
 
 
+import g4f
+
+from g4f.Provider import (
+    AItianhu,
+    Acytoo,
+    Aichat,
+    Ails,
+    Bard,
+    Bing,
+    ChatBase,
+    ChatgptAi,
+    H2o,
+    HuggingChat,
+    OpenAssistant,
+    OpenaiChat,
+    Raycast,
+    Theb,
+    Vercel,
+    Vitalentum,
+    Ylokh,
+    You,
+    Yqcloud,
+    GPTalk
+)
+
+
 @app.route("/")
 def index():
     return "interference api, url: http://127.0.0.1:1337"
@@ -25,8 +51,8 @@ def chat_completions():
     stream = request.get_json().get("stream", False)
     messages = request.get_json().get("messages")
 
-    response = ChatCompletion.create(model=model, stream=stream, messages=messages)
-
+    # response = ChatCompletion.create(model=model, stream=stream, messages=messages)
+    response = ChatCompletion.create(model=model, stream=stream, messages=messages,provider=g4f.Provider.GPTalk)
     completion_id = "".join(random.choices(string.ascii_letters + string.digits, k=28))
     completion_timestamp = int(time.time())
 
