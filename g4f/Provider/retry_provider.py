@@ -1,16 +1,17 @@
 from __future__ import annotations
 
+import asyncio
 import random
 from typing import List, Type, Dict
 from ..typing import CreateResult, Messages
 from .base_provider import BaseProvider, AsyncProvider
-from ..debug import logging
 
 
 class RetryProvider(AsyncProvider):
     __name__: str = "RetryProvider"
     working: bool = True
     supports_stream: bool = True
+    logging: bool = False
 
     def __init__(
         self,
@@ -19,7 +20,6 @@ class RetryProvider(AsyncProvider):
     ) -> None:
         self.providers: List[Type[BaseProvider]] = providers
         self.shuffle: bool = shuffle
-
 
     def create_completion(
         self,
@@ -39,7 +39,7 @@ class RetryProvider(AsyncProvider):
         started: bool = False
         for provider in providers:
             try:
-                if logging:
+                if self.logging:
                     print(f"Using {provider.__name__} provider")
                 for token in provider.create_completion(model, messages, stream, **kwargs):
                     yield token
@@ -48,7 +48,7 @@ class RetryProvider(AsyncProvider):
                     return
             except Exception as e:
                 self.exceptions[provider.__name__] = e
-                if logging:
+                if self.logging:
                     print(f"{provider.__name__}: {e.__class__.__name__}: {e}")
                 if started:
                     raise e
@@ -68,10 +68,14 @@ class RetryProvider(AsyncProvider):
         self.exceptions: Dict[str, Exception] = {}
         for provider in providers:
             try:
-                return await provider.create_async(model, messages, **kwargs)
+                return await asyncio.wait_for(provider.create_async(model, messages, **kwargs), timeout=60)
+            except asyncio.TimeoutError as e:
+                self.exceptions[provider.__name__] = e
+                if self.logging:
+                    print(f"{provider.__name__}: TimeoutError: {e}")
             except Exception as e:
                 self.exceptions[provider.__name__] = e
-                if logging:
+                if self.logging:
                     print(f"{provider.__name__}: {e.__class__.__name__}: {e}")
     
         self.raise_exceptions()

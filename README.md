@@ -2,7 +2,7 @@
 
 By using this repository or any code related to it, you agree to the [legal notice](./LEGAL_NOTICE.md). The author is not responsible for any copies, forks, reuploads made by other users, or anything else related to gpt4free. This is the author's only account and repository. To prevent impersonation or irresponsible actions, please comply with the GNU GPL license this Repository uses.
 
-- latest pypi version: [`0.1.6.6`](https://pypi.org/project/g4f/0.1.6.6)
+- latest pypi version: [`0.1.6.8`](https://pypi.org/project/g4f/0.1.6.8)
 ```sh
 pip install -U g4f
 ```
@@ -30,7 +30,7 @@ python -m g4f.gui.run
 
 preview:
 
-<img width="1470" alt="image" src="https://github.com/xtekky/gpt4free/assets/98614666/57ad818a-a0dd-4eae-83e1-3fff848ae040">
+<img width="1470" alt="image" src="https://github.com/xtekky/gpt4free/assets/98614666/a767290f-d29c-471c-9db4-6905d1cb6489">
 
 - run interference api from pypi package:
 
@@ -55,7 +55,8 @@ python -m g4f.interference.run
   - [The `g4f` Package](#the-g4f-package)
   - [interference openai-proxy api (use with openai python package)](#interference-openai-proxy-api-use-with-openai-python-package)
 - [Providers](#models)
-  - [gpt-3.5 / gpt-4](#gpt-35--gpt-4)
+  - [gpt-3.5](#gpt-35)
+  - [gpt-4](#gpt-4)
   - [Other Models](#other-models)
 - [Related gpt4free projects](#related-gpt4free-projects)
 - [Contribute](#contribute)
@@ -195,7 +196,7 @@ for message in response:
 response = g4f.ChatCompletion.create(
     model=g4f.models.gpt_4,
     messages=[{"role": "user", "content": "Hello"}],
-)  # alterative model setting
+)  # alternative model setting
 
 print(response)
 ```
