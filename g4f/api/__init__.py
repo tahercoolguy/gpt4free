@@ -3,7 +3,7 @@ import random
 import string
 import time
 
-# import requests
+import requests
 from flask import Flask, request
 from flask_cors import CORS
 from transformers import AutoTokenizer
