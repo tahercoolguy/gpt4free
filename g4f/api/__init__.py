@@ -169,7 +169,7 @@ def get_embedding(input_text, token):
     return embedding
 
 
-@app.route("/embeddings", methods=["POST"])
+@app.route("/engines/text-embedding-ada-002/embeddings", methods=["POST"])
 def embeddings():
     input_text_list = request.get_json().get("input")
     input_text = " ".join(map(str, input_text_list))
@@ -178,7 +178,7 @@ def embeddings():
 
     return {
         "data": [{"embedding": embedding, "index": 0, "object": "embedding"}],
-        "model": "text-embedding-ada-002-v2",
+        "model": "text-embedding-ada-002",
         "object": "list",
         "usage": {"prompt_tokens": 8, "total_tokens": 8},
     }
