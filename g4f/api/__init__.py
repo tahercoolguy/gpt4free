@@ -120,7 +120,7 @@ def chat_completions():
     return app.response_class(streaming(), mimetype="text/event-stream")
 
 
-Get the embedding from huggingface
+#Get the embedding from huggingface
 def get_embedding(input_text, token):
     huggingface_token = token
     embedding_model = "sentence-transformers/all-mpnet-base-v2"
