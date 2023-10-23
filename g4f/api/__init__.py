@@ -178,9 +178,9 @@ def embeddings():
 
     return {
         "data": [{"embedding": embedding, "index": 0, "object": "embedding"}],
-        "model": "text-embedding-ada-002",
+        "model": "text-embedding-ada-002-v2",
         "object": "list",
-        "usage": {"prompt_tokens": None, "total_tokens": None},
+        "usage": {"prompt_tokens": 8, "total_tokens": 8},
     }
 
 
