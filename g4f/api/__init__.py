@@ -53,7 +53,8 @@ def chat_completions():
 
     # response = ChatCompletion.create(model=model, stream=stream, messages=messages)
     print(messages)
-    response = ChatCompletion.create(model=model, stream=stream, messages=messages,provider=g4f.Provider.GPTalk)
+    # response = ChatCompletion.create(model=model, stream=stream, messages=messages,provider=g4f.Provider.GPTalk)
+    response = ChatCompletion.create(model=model, stream=stream, messages=messages,provider=g4f.Provider.Phind)
     print(response)
     completion_id = "".join(random.choices(string.ascii_letters + string.digits, k=28))
     completion_timestamp = int(time.time())
