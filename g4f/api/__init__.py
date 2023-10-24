@@ -76,9 +76,9 @@ def chat_completions():
                 }
             ],
             "usage": {
-                "prompt_tokens": None,
-                "completion_tokens": None,
-                "total_tokens": None,
+                "prompt_tokens": 8,
+                "completion_tokens": 8,
+                "total_tokens": 8,
             },
         }
 
