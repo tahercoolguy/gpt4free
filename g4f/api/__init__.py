@@ -124,7 +124,7 @@ def chat_completions():
 def get_embedding(input_text, token):
     huggingface_token = token
     embedding_model = "sentence-transformers/all-mpnet-base-v2"
-    max_token_length = 500
+    max_token_length = 100000
 
     # Load the tokenizer for the 'all-mpnet-base-v2' model
     tokenizer = AutoTokenizer.from_pretrained(embedding_model)
